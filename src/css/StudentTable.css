@@ -1,0 +1,58 @@
+.student-table {
+  width: 100%;
+  border-collapse: collapse; 
+  table-layout: fixed;
+}
+
+.student-table thead tr {
+  background-color: #d9e1f2;
+}
+
+.student-table th {
+  border: 1px solid #000;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.student-table td {
+  border: 1px solid #000;
+  padding: 12px 10px;
+  text-align: center;
+}
+
+.student-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.student-table tbody tr:nth-child(odd) {
+  background-color: #fff;
+}
+
+.student-table tbody tr:hover {
+  background-color: #e6f0ff;
+}
+
+.student-table input,
+.student-table select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px 6px;
+  font-size: 14px;
+}
+
+.student-table button {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid #333;
+  background-color: #fff;
+  transition: background-color 0.2s;
+}
+
+.student-table button:hover {
+  background-color: #f0f0f0;
+}
+
+.student-table button + button {
+  margin-left: 5px;
+}
