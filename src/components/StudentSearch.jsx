@@ -1,11 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 function StudentSearch({ onSearch }) {
     const [name, setName] = useState("");
     const [gender, setGender] = useState("");
+    const nameRef = useRef(null);
+
+    useEffect(() => {
+        nameRef.current.focus();
+    }, []);
+
     return (
         <div style={{ marginBottom: "10px", display: "flex", alignItems: "center", gap: "10px" }}>
             <input
+                ref={nameRef}
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
