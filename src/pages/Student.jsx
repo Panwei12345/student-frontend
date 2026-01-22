@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback,useRef } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import StudentSearch from "../components/StudentSearch";
 import StudentForm from "../components/StudentForm";
 import StudentTable from "../components/StudentTable"
@@ -9,6 +9,7 @@ import {
     updateStudent,
 } from "../api/StudentApi";
 import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Student() {
     const location = useLocation();
@@ -17,6 +18,7 @@ function Student() {
     const [query, setQuery] = useState({ name: username, gender: "" });
     const [editingId, setEditingId] = useState(null);
     const [editingStudent, setEditingStudent] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!query.name && !query.gender) {
@@ -32,8 +34,9 @@ function Student() {
 
     const handleAdd = useCallback(async (student) => {
         await addStudent(student);
-        fetchStudents(query).then(setStudents);
-    }, [query]);
+        setQuery({ gender: student.gender });
+        fetchStudents({ gender: student.gender }).then(setStudents);
+    }, []);
 
     const handleDelete = useCallback(async (id) => {
         await deleteStudent(id);
@@ -83,6 +86,8 @@ function Student() {
         URL.revokeObjectURL(url);
     };
 
+    const handleBack = () => navigate("/login");
+
     return (
         <div style={{ background: "linear-gradient(135deg, #cacaca 0%, #2575fc 100%)", minHeight: "100vh" }}>
             <div style={{ padding: "20px", fontFamily: "Arial, sans-serif", maxWidth: 800, margin: "0 auto" }}>
@@ -100,6 +105,12 @@ function Student() {
                     onSave={handleUpdate}
                     onCsv={exportCSV}
                 />
+            </div>
+            <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end", marginLeft: "auto",marginRight: "auto",width: 800 }}>
+                <button
+                    onClick={handleBack}>
+                    戻る
+                </button>
             </div>
         </div>
     )

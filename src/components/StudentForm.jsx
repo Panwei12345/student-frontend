@@ -11,7 +11,7 @@ function StudentForm({ onAdd }) {
   const handleAdd = () => {
     const { studentNo, name, gender, age } = student;
     if (!studentNo || !name || !gender || !age) {
-      alert("内容を入力してくださ");
+      alert("内容を入力してください");
       return;
     }
     onAdd(student);
