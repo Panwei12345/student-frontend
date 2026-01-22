@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback,useRef } from "react";
 import StudentSearch from "../components/StudentSearch";
 import StudentForm from "../components/StudentForm";
 import StudentTable from "../components/StudentTable"
@@ -28,28 +28,28 @@ function Student() {
 
     const handleSearch = useCallback((name, gender) => {
         setQuery({ name, gender });
-    },[]);
+    }, []);
 
     const handleAdd = useCallback(async (student) => {
         await addStudent(student);
         fetchStudents(query).then(setStudents);
-    },[]);
+    }, [query]);
 
     const handleDelete = useCallback(async (id) => {
         await deleteStudent(id);
         fetchStudents(query).then(setStudents);
-    },[]);
+    }, [query]);
 
     const handleEdit = useCallback((student) => {
         setEditingId(student.id);
         setEditingStudent({ ...student });
-    },[]);
+    }, []);
 
     const handleUpdate = useCallback(async () => {
         await updateStudent(editingId, editingStudent);
         setEditingId(null);
         fetchStudents(query).then(setStudents);
-    },[editingId,editingStudent,query]);
+    }, [editingId, editingStudent, query]);
 
     const exportCSV = () => {
         if (students.length === 0) {
@@ -84,7 +84,7 @@ function Student() {
     };
 
     return (
-        <div style={{background: "linear-gradient(135deg, #cacaca 0%, #2575fc 100%)",minHeight: "100vh"}}>
+        <div style={{ background: "linear-gradient(135deg, #cacaca 0%, #2575fc 100%)", minHeight: "100vh" }}>
             <div style={{ padding: "20px", fontFamily: "Arial, sans-serif", maxWidth: 800, margin: "0 auto" }}>
                 <h1 style={{ textAlign: "center", color: "#2c3e50" }}>男女別生徒リスト</h1>
                 <StudentSearch onSearch={handleSearch} />
