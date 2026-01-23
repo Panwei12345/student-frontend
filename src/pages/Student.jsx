@@ -14,8 +14,8 @@ import { useNavigate } from "react-router-dom";
 function Student() {
     const location = useLocation();
     const { username } = location.state || {};
-    const [students, setStudents] = useState([]);
     const [query, setQuery] = useState({ name: username, gender: "" });
+    const [students, setStudents] = useState([]);
     const [editingId, setEditingId] = useState(null);
     const [editingStudent, setEditingStudent] = useState({});
     const navigate = useNavigate();
@@ -106,7 +106,7 @@ function Student() {
                     onCsv={exportCSV}
                 />
             </div>
-            <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end", marginLeft: "auto",marginRight: "auto",width: 800 }}>
+            <div style={{ marginTop: 8, display: "flex", justifyContent: "flex-end", marginLeft: "auto", marginRight: "auto", width: 800 }}>
                 <button
                     onClick={handleBack}>
                     戻る
