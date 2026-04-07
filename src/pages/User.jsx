@@ -17,9 +17,9 @@ function User() {
         }
 
         try {
-            const user = await fetchUser({ username, password });
-
-            if (!user) {
+            const date = await fetchUser({ username, password });
+            console.log("fetchUser 回傳：", date);
+            if (!date) {
                 alert("失敗");
                 return;
             }

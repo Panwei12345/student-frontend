@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 function Student() {
     const location = useLocation();
     const { username } = location.state || {};
-    const [query, setQuery] = useState({ name: username, gender: "" });
+    const [query, setQuery] = useState([]);
     const [students, setStudents] = useState([]);
     const [editingId, setEditingId] = useState(null);
     const [editingStudent, setEditingStudent] = useState({});

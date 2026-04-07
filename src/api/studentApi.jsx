@@ -3,7 +3,21 @@ const BASE_URL = "http://localhost:8080/api/students";
 // 検索
 export const fetchStudents = async (params = {}) => {
   const query = new URLSearchParams(params).toString();
-  const res = await fetch(`${BASE_URL}?${query}`);
+  
+  const token = localStorage.getItem("accessToken");
+  //console.log("query =", query);
+  const res = await fetch(`${BASE_URL}?${query}`, {
+    method: "GET",
+    headers: {
+      "Authorization": `Bearer ${token}`
+    }
+  });
+
+  if (!res.ok) {
+    console.log("error:", res.status);
+    return null;
+  }
+  
   return res.json();
 };
 
